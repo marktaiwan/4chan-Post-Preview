@@ -10,12 +10,13 @@
 // @grant       none
 // ==/UserScript==
 
+const SCRIPT_ID = 'post-preview';
 const css = `
-.post-preview {
+.${SCRIPT_ID} {
   margin-top: 0.5rem;
   overflow-y: auto;
 }
-.post-preview-blockquote {
+.${SCRIPT_ID}-blockquote {
   margin: 5px;
   min-height: 80px;
   max-height: 300px;
@@ -278,7 +279,7 @@ style.innerHTML = css;
 document.head.appendChild(style);
 
 function updatePreview() {
-  document.querySelectorAll('.post-preview-blockquote').forEach(bq => {
+  document.querySelectorAll(`.${SCRIPT_ID}-blockquote`).forEach(bq => {
     // Get the textarea associated with the preview
     const form = bq.closest(selectors);
     const textarea = form.querySelector('textarea');
@@ -291,11 +292,11 @@ creationObserver(selectors, form => {
   const textarea = form.querySelector('textarea');
 
   const preview = document.createElement('div');
-  preview.classList.add('post-preview');
+  preview.classList.add(SCRIPT_ID);
   preview.style.width = textarea.offsetWidth + 'px';
 
   const bq = document.createElement('blockquote');
-  bq.classList.add('post-preview-blockquote');
+  bq.classList.add(`${SCRIPT_ID}-blockquote`);
 
   preview.appendChild(bq);
   form.append(
