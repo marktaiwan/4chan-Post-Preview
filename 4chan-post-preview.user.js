@@ -2,7 +2,7 @@
 // @name        4chan Post Preview
 // @description Post formatting preview
 // @namespace   https://github.com/marktaiwan/
-// @version     1.0.0
+// @version     1.1.0
 // @author      Fillyanon, Marker
 // @license     GPLv3
 // @match       *://boards.4channel.org/*/thread/*
