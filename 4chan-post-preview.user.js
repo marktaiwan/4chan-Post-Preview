@@ -22,6 +22,11 @@ const css = `
   max-height: 300px;
   word-wrap: break-word;
 }
+.${SCRIPT_ID} summary {
+  margin: 0px 5px;
+  cursor: pointer;
+  user-select: none;
+}
 `;
 
 // Backup implementation of $L in case the userscript is executed in a sandboxed context
@@ -287,6 +292,9 @@ function updatePreview() {
   });
 }
 
+// default setting
+localStorage[`${SCRIPT_ID}_preview_visibility`] ??= 'false';
+
 const PostParser = new Parser();
 creationObserver(selectors, form => {
   const textarea = form.querySelector('textarea');
@@ -295,10 +303,21 @@ creationObserver(selectors, form => {
   preview.classList.add(SCRIPT_ID);
   preview.style.width = textarea.offsetWidth + 'px';
 
+  const details = document.createElement('details');
+  details.toggleAttribute('open', localStorage[`${SCRIPT_ID}_preview_visibility`] === 'true');
+
+  const summary = document.createElement('summary');
+  summary.innerText = 'Click to toggle preview';
+  summary.addEventListener('click', e => {
+    if (e.button !== 0) return;
+    localStorage[`${SCRIPT_ID}_preview_visibility`] = !details.hasAttribute('open');
+  });
+
   const bq = document.createElement('blockquote');
   bq.classList.add(`${SCRIPT_ID}-blockquote`);
 
-  preview.appendChild(bq);
+  details.append(summary, bq);
+  preview.append(details);
   form.append(
     document.createElement('hr'),
     preview,
