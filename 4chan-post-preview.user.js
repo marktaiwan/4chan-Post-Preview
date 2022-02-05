@@ -2,7 +2,7 @@
 // @name        4chan Post Preview
 // @description Post formatting preview
 // @namespace   https://github.com/marktaiwan/
-// @version     1.1.0
+// @version     1.1.1
 // @author      Fillyanon, Marker
 // @license     GPLv3
 // @match       *://boards.4channel.org/*/thread/*
@@ -12,8 +12,10 @@
 
 const SCRIPT_ID = 'post-preview';
 const css = `
+.${SCRIPT_ID} hr {
+  margin: 4px 0px;
+}
 .${SCRIPT_ID} {
-  margin-top: 0.5rem;
   overflow-y: auto;
 }
 .${SCRIPT_ID}-blockquote {
