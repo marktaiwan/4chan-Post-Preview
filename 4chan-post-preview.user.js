@@ -2,6 +2,8 @@
 // @name        4chan Post Preview
 // @description Post formatting preview
 // @namespace   https://github.com/marktaiwan/
+// @homepageURL https://github.com/marktaiwan/4chan-Post-Preview
+// @supportURL  https://github.com/marktaiwan/4chan-Post-Preview/issues
 // @version     1.1.1
 // @author      Fillyanon, Marker
 // @license     GPLv3
