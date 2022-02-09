@@ -4,7 +4,7 @@
 // @namespace   https://github.com/marktaiwan/
 // @homepageURL https://github.com/marktaiwan/4chan-Post-Preview
 // @supportURL  https://github.com/marktaiwan/4chan-Post-Preview/issues
-// @version     1.1.1
+// @version     1.1.2
 // @author      Fillyanon, Marker
 // @license     GPLv3
 // @match       *://boards.4channel.org/*/thread/*
@@ -123,12 +123,12 @@ class Parser {
             break;
           case 'spoilerOpen':
             this.openSpoilers++;
-            this.pushToken(new SpoilerOpen());
+            if (this.openSpoilers <= 2) this.pushToken(new SpoilerOpen());
             break;
           case 'spoilerClose':
             if (this.openSpoilers > 0) {
               this.openSpoilers--;
-              this.pushToken(new SpoilerClose());
+              if (this.openSpoilers >= 2) this.pushToken(new SpoilerClose());
             } else {
               // unmatched '[/spoiler]'
               this.staged += token;
