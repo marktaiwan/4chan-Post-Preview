@@ -337,7 +337,7 @@ creationObserver(selectors, form => {
   }
 
   // handle user inputs
-  ['input','paste'].forEach(eventType => textarea.addEventListener(eventType, updatePreview));
+  ['input', 'paste'].forEach(eventType => textarea.addEventListener(eventType, updatePreview));
 
   /*
    * Update preview on adding quotes or form submission

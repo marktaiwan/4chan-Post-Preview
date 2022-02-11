@@ -16,6 +16,10 @@
         }
     },
     "rules": {
+        "arrow-parens": [
+            1,
+            "as-needed"
+        ],
         "arrow-spacing": [
             1,
             {
@@ -24,27 +28,46 @@
             }
         ],
         "block-scoped-var": 2,
+        "block-spacing": [
+            1,
+            "always"
+        ],
+        "comma-dangle": [
+            1,
+            "only-multiline"
+        ],
+        "comma-spacing": [
+            1
+        ],
+        "comma-style": [
+            1
+        ],
+        "dot-location": [
+            2,
+            "property"
+        ],
         "eol-last": 2,
+        "func-call-spacing": [
+            2,
+            "never"
+        ],
+        "implicit-arrow-linebreak": [
+            1,
+            "beside"
+        ],
         "indent": [
-            "error",
+            2,
             2,
             {
-                "SwitchCase": 1,
-                "VariableDeclarator": "first",
-                "ignoreComments": true,
+                "flatTernaryExpressions": true,
+                "ignoreComments": false,
                 "MemberExpression": "off",
                 "outerIIFEBody": 0,
-                "flatTernaryExpressions": true,
+                "SwitchCase": 1,
+                "VariableDeclarator": "first",
                 "ignoredNodes": [
                     "ConditionalExpression"
                 ]
-            }
-        ],
-        "keyword-spacing": [
-            "error",
-            {
-                "before": true,
-                "after": true
             }
         ],
         "key-spacing": [
@@ -54,15 +77,23 @@
                 "mode": "minimum"
             }
         ],
+        "keyword-spacing": [
+            2,
+            {
+                "after": true,
+                "before": true
+            }
+        ],
         "lines-around-comment": [
             1,
             {
                 "beforeBlockComment": true,
-                "beforeLineComment": false
+                "beforeLineComment": false,
+                "ignorePattern": "^\\*"
             }
         ],
-        "no-debugger": 1,
         "no-console": 0,
+        "no-debugger": 1,
         "no-extra-semi": 2,
         "no-irregular-whitespace": 2,
         "no-label-var": 1,
@@ -81,7 +112,7 @@
         ],
         "no-self-compare": 2,
         "no-sparse-arrays": 1,
-        "no-trailing-spaces": 2,
+        "no-trailing-spaces": 1,
         "no-undef": 1,
         "no-unreachable": 2,
         "no-unused-vars": 1,
@@ -104,15 +135,15 @@
                 "after": true
             }
         ],
-        "space-infix-ops": 1,
         "space-before-function-paren": [
             2,
             {
                 "anonymous": "always",
-                "named": "never",
-                "asyncArrow": "always"
+                "asyncArrow": "always",
+                "named": "never"
             }
         ],
+        "space-infix-ops": 1,
         "spaced-comment": [
             1,
             "always",
