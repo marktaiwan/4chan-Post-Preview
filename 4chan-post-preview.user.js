@@ -148,8 +148,8 @@ class Parser {
   }
   render() {
     return this.tokenList
-            .map(token => token.toString())
-            .join('');
+      .map(token => token.toString())
+      .join('');
   }
   commit() {
     if (this.staged.length > 0) {
@@ -239,39 +239,39 @@ class PostLink extends Token {
     const href = (localPost)
       ? `#p${$3}`
       : (catalogSearch)
-      ? `${window.location.protocol}//boards.${host}/${boardId}/catalog#s=${encodeURIComponent($2)}`
-      : 'javascript:void(0);';
-      // The last one is for external posts i.e. (!catalogSearch && !localPost)
-      // because annoyingly, there is no way of getting a post's OP via 4chan's API
+        ? `${window.location.protocol}//boards.${host}/${boardId}/catalog#s=${encodeURIComponent($2)}`
+        : 'javascript:void(0);';
+        // The last one is for external posts i.e. (!catalogSearch && !localPost)
+        // because annoyingly, there is no way of getting a post's OP via 4chan's API
 
     this.formatted = `<a href="${href}" class="quotelink">${text}</a>`;
   }
 }
 
 const creationObserver = (function () {
-const observedNodes = new WeakSet;
-const callbacks = [];
-const executeCallback = (fn, node) => {
-  if (observedNodes.has(node)) return;
-  observedNodes.add(node);
-  fn(node);
-};
-const obs = new MutationObserver(mutationRecords => {
-  mutationRecords.forEach(mutation => {
-    mutation.addedNodes.forEach(node => {
-      if (!(node instanceof HTMLElement)) return;
-      callbacks.forEach(([selector, fn]) => {
-        if (node.matches(selector)) executeCallback(fn, node);
-        node.querySelectorAll(selector).forEach(childNode => executeCallback(fn, childNode));
+  const observedNodes = new WeakSet();
+  const callbacks = [];
+  const executeCallback = (fn, node) => {
+    if (observedNodes.has(node)) return;
+    observedNodes.add(node);
+    fn(node);
+  };
+  const obs = new MutationObserver(mutationRecords => {
+    mutationRecords.forEach(mutation => {
+      mutation.addedNodes.forEach(node => {
+        if (!(node instanceof HTMLElement)) return;
+        callbacks.forEach(([selector, fn]) => {
+          if (node.matches(selector)) executeCallback(fn, node);
+          node.querySelectorAll(selector).forEach(childNode => executeCallback(fn, childNode));
+        });
       });
     });
   });
-});
-obs.observe(document.body, { childList: true, subtree: true });
-return function (selector, fn) {
-  document.querySelectorAll(selector).forEach(node => executeCallback(fn, node));
-  callbacks.push([selector, fn]);
-};
+  obs.observe(document.body, {childList: true, subtree: true});
+  return function (selector, fn) {
+    document.querySelectorAll(selector).forEach(node => executeCallback(fn, node));
+    callbacks.push([selector, fn]);
+  };
 })();
 
 const selectors = [
@@ -331,6 +331,7 @@ creationObserver(selectors, form => {
     preview.style.width = textarea.offsetWidth + 'px';
   }).observe(textarea);
 
+  /* global Main */
   if (Main) {
     preview.addEventListener('mouseover', Main.onThreadMouseOver);
     preview.addEventListener('mouseout', Main.onThreadMouseOut);
